@@ -1,103 +1,94 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { projectObj } from "@/lib/ProjDetails";
+import Link from "next/link";
+import { MdOnlinePrediction } from "react-icons/md";
+import { useState, useEffect } from "react";
+
+export default function HomePage() {
+  const [stats, setStats] = useState<string[]>(projectObj.map(() => "Checking"));
+
+  // Function to check website status via API route
+  const checkWebsiteStatus = async (url: string) => {
+    try {
+      await fetch(`${encodeURIComponent(url)}`);
+      return "Online";
+    } catch (error) {
+      return "Offline";
+    }
+  };
+
+  // Function to update statuses for all projects
+  const updateStatuses = async () => {
+    const newStats = await Promise.all(
+      projectObj.map(async (proj) => {
+        const status = await checkWebsiteStatus(proj.link);
+        return status;
+      })
+    );
+    setStats(newStats);
+  };
+
+  // Run status check on mount and every 1 minute
+  useEffect(() => {
+    updateStatuses(); // Initial check on component mount
+
+    const interval = setInterval(() => {
+      updateStatuses();
+    }, 2000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="flex flex-col h-screen container mx-auto">
+      <Link href="/" className="px-20 py-10">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl border-4 w-fit mx-auto p-1 lg:p-2 rounded rounded-br-xl border-primary text-primary font-bold">
+          SUPXDEVS
+        </h1>
+      </Link>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <div className="flex flex-col gap-2 p-2 sm:px-20 sm:py-8">
+        <div className="hidden lg:flex flex-grow text-center">
+          <div className="w-[10%] text-lg font-semibold">Name</div>
+          <div className="w-[25%] text-lg font-semibold">Link</div>
+          <div className="w-[10%] text-lg font-semibold">Status</div>
+          <div className="w-[15%] text-lg font-semibold">Last Updated</div>
+          <div className="w-[40%] text-lg font-semibold">Description</div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <div className="flex flex-col sm:gap-2 text-sm lg:text-lg">
+          {projectObj.map((proj, indx) => (
+            <div
+              key={proj.name}
+              className="flex flex-col flex-grow gap-1 sm:flex-row text-center items-center border rounded shadow-lg lg:divide-x"
+            >
+              <div className="sm:w-[10%] p-1 sm:p-2 text-lg">{proj.name}</div>
+              <Link
+                target="_blank"
+                href={proj.link}
+                className="sm:w-[25%] p-1 sm:p-2 hover:text-primary/80 hover:scale-105"
+                title={`visit ${proj.link}`}
+              >
+                {proj.link}
+              </Link>
+              <div
+                className={`sm:w-[10%] ${
+                  stats[indx] === "Online" ? "text-green-300" : "text-red-300"
+                } flex items-center justify-center gap-1 p-1 sm:p-2`}
+              >
+                <span className="animate-pulse duration-200 transition-all">
+                  <MdOnlinePrediction />
+                </span>
+                {stats[indx] || "Unknown"}
+              </div>
+              <div className="sm:w-[15%] p-1 sm:p-2">{proj.lastUpdate}</div>
+              <div className="sm:w-[40%] p-1 sm:p-2">{proj.description}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
   );
 }
