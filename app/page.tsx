@@ -14,6 +14,7 @@ export default function HomePage() {
       await fetch(`${encodeURIComponent(url)}`);
       return "Online";
     } catch (error) {
+      console.error(error);
       return "Offline";
     }
   };
