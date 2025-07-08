@@ -17,9 +17,9 @@ const firaCode = Fira_Code({
 export const metadata: Metadata = {
   title: {
     template: "%s | supxdevs",
-    default: "Projects | supxdevs",
+    default: "Status | supxdevs",
   },
-  description: "All Projects related to supxdevs.",
+  description: "Status of all projects related to supxdevs.",
 };
 
 export default function RootLayout({
