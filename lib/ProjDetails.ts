@@ -32,4 +32,11 @@ export const projectObj: projType[] = [
     lastUpdate: "19-06-2025",
     link: "https://justlinks.codewithkara.com",
   },
+  {
+    name: "File Uploader",
+    description:
+      "A website where you can upload your files and it stores in imagekit. No backend/db yet.",
+    lastUpdate: "08-07-2025",
+    link: "https://fileuploader.supxdevs.com",
+  },
 ];
