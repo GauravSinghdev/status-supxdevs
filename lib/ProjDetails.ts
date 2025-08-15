@@ -7,6 +7,12 @@ interface projType {
 
 export const projectObj: projType[] = [
   {
+    name: "PortFolio",
+    description: "My personal portfolio website.",
+    lastUpdate: "07-08-2025",
+    link: "https://codewithkara.com/",
+  },
+  {
     name: "Forge UI",
     description: "UI component app, just copy paste for using the awesome ui.",
     lastUpdate: "19-06-2025",

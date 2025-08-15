@@ -59,7 +59,7 @@ export default function HomePage() {
           <div className="w-[40%] text-lg font-semibold">Description</div>
         </div>
 
-        <div className="flex flex-col sm:gap-2 text-sm lg:text-lg">
+        <div className="flex flex-col sm:gap-2 text-sm lg:text-lg px-2 sm:px-0">
           {projectObj.map((proj, indx) => (
             <div
               key={proj.name}
