@@ -39,4 +39,10 @@ export const projectObj: projType[] = [
     lastUpdate: "08-07-2025",
     link: "https://fileuploader.supxdevs.com",
   },
+  {
+    name: "Byte Log",
+    description: "Blogging App - fast caching and tanstack query used.",
+    lastUpdate: "15-08-2025",
+    link: "https://bytelog.codewithkara.com/"
+  }
 ];
