@@ -35,7 +35,7 @@ export default function HomePage() {
 
     const interval = setInterval(() => {
       updateStatuses();
-    }, 2000);
+    }, 1000 * 60 * 2);
 
     // Cleanup interval on component unmount
     return () => clearInterval(interval);
@@ -49,7 +49,10 @@ export default function HomePage() {
         </h1>
       </Link>
 
+      
+
       <div className="flex flex-col gap-2 p-2 sm:px-20 sm:py-8">
+      <div>(Update every 2 min)</div>
         <div className="hidden lg:flex flex-grow text-center">
           <div className="w-[10%] text-lg font-semibold">Name</div>
           <div className="w-[25%] text-lg font-semibold">Link</div>
@@ -62,7 +65,7 @@ export default function HomePage() {
           {projectObj.map((proj, indx) => (
             <div
               key={proj.name}
-              className="flex flex-col flex-grow gap-1 sm:flex-row text-center items-center border rounded shadow-lg lg:divide-x"
+              className="flex flex-col flex-grow gap-1 sm:flex-row text-center items-center border rounded lg:divide-x"
             >
               <div className="sm:w-[10%] p-1 sm:p-2 text-lg">{proj.name}</div>
               <Link
