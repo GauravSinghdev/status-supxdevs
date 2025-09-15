@@ -56,5 +56,11 @@ export const projectObj: projType[] = [
     description: "Chatting App - Socket.io",
     lastUpdate: "26-08-2025",
     link: "https://chitchat.supxdevs.com"
+  },
+  {
+    name: "Pagely",
+    description: "UI Component App",
+    lastUpdate: "15-09-2025",
+    link: "https://pagely.supxdevs.com"
   }
 ];

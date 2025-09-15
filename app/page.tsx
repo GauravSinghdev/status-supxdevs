@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 
 export default function HomePage() {
   const [stats, setStats] = useState<string[]>(projectObj.map(() => "Checking"));
-
   // Function to check website status via API route
   const checkWebsiteStatus = async (url: string) => {
     try {
@@ -93,3 +92,4 @@ export default function HomePage() {
     </main>
   );
 }
+
