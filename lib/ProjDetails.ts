@@ -49,18 +49,24 @@ export const projectObj: projType[] = [
     name: "Byte Log",
     description: "Blogging App - fast caching and tanstack query used.",
     lastUpdate: "15-08-2025",
-    link: "https://bytelog.codewithkara.com"
+    link: "https://bytelog.codewithkara.com",
   },
   {
     name: "Chitchat",
     description: "Chatting App - Socket.io",
     lastUpdate: "26-08-2025",
-    link: "https://chitchat.supxdevs.com"
+    link: "https://chitchat.supxdevs.com",
   },
   {
     name: "Pagely",
     description: "UI Component App",
     lastUpdate: "15-09-2025",
-    link: "https://pagely.supxdevs.com"
-  }
+    link: "https://pagely.supxdevs.com",
+  },
+  {
+    name: "Groupe",
+    description: "Make your private chat",
+    lastUpdate: "15-09-2025",
+    link: "https://groupe.codewithkara.com",
+  },
 ];
